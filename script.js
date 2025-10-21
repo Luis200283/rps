@@ -1,54 +1,88 @@
+const select = document.getElementById('select-container')
+const result = document.querySelectorAll('.img-result')
+const jugar = document.getElementById('jugar')
+const player = document.getElementById('player')
+const boot = document.getElementById('boot')
+let playerScore = 0;
+let bootScore = 0;
+let ganador;
+let human;
+
+select.addEventListener('click', (event) => {
+    human = event.target.alt
+    
+    if (human == 'piedra' || human == 'papel' || human == 'tijeras') {
+        result[0].src = `./imagenes/${human}.png`
+        result[0].style.background = "black"
+    }
+
+    game()
+})
+
 function getComputerChoice(){
-    let select = Math.floor(Math.random()*3)
+    let select = Math.floor(Math.random() * 3)
     if (select == 0) {
         return "piedra"
     }
-    if(select == 1){
+    if (select == 1) {
         return "papel"
-    } 
+    }
     else {
         return "tijeras"
     }
 }
 
-function enfrentamiento(computer, human){
+function enfrentamiento(computer, human) {
 
-    if(computer == "piedra" && human == "tijeras"){
+    if (computer == "piedra" && human == "tijeras") {
+        bootScore++
         return ("Piedra gana a Tijeras \n Has perdido")
     }
-    if(computer == "piedra" && human == "papel"){
+    if (computer == "piedra" && human == "papel") {
+        playerScore++
         return "Papel gana a Piedra \n Has ganado"
-    }    
-    if(computer == "piedra" && human == "piedra"){
+    }
+    if (computer == "piedra" && human == "piedra") {
         return " Piedra contra Piedra \n Empate"
     }
 
-    if(computer == "papel" && human == "tijeras"){
+    if (computer == "papel" && human == "tijeras") {
+        playerScore++
         return "Tijeras gana a papel \n Has ganada"
-    }    
-    if(computer == "papel" && human == "piedra"){
+    }
+    if (computer == "papel" && human == "piedra") {
+        bootScore++
         return " Papel gana a Piedra \n Has perdido"
-    }    
-    if(computer == "papel" && human == "papel"){
+    }
+    if (computer == "papel" && human == "papel") {
         return "Papel Contra Papel \n Empate"
     }
-    
-    if(computer == "tijeras" && human == "tijeras"){
+
+    if (computer == "tijeras" && human == "tijeras") {
         return "Tijeras contra Tijeras \n Empate"
     }
-    if(computer == "tijeras" && human == "papel"){
+    if (computer == "tijeras" && human == "papel") {
+        bootScore++
         return "Tijeras gana a papel \n Has perdido"
-    }    
-    if(computer == "tijeras" && human == "piedra"){
+    }
+    if (computer == "tijeras" && human == "piedra") {
+        playerScore++
         return " Piedra gana a tijera \n Has ganado"
     }
-}   
-
-function game(){
-    let humano = prompt("Escriba una opcion para jugar", "Piedra, Papel o Tijeras").toLowerCase()
-    let computer = String(getComputerChoice())
-    let resultado = String(enfrentamiento(computer, humano))
-    alert(resultado)
 }
 
-game()
+function game() {
+    let computer = String(getComputerChoice())
+    let resultado = String(enfrentamiento(computer, human))
+    
+    if (computer == 'piedra' || computer == 'papel' || computer == 'tijeras') {
+        result[1].src = `./imagenes/${computer}.png`
+        result[1].style.background = "black"
+    }
+
+    player.textContent = playerScore;
+    boot.textContent = bootScore
+    ganador = resultado
+
+}
+

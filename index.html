@@ -1,15 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <script src="script.js"></script>
-    <title>Document</title>
+    <link rel="shortcut icon" href="./imagenes/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap');
+    </style>
+    <title>ROCK-PAPER-SISOR</title>
 </head>
+
 <body>
-    <p>
-        juguemos Piedra, Papel o Tijeras
-    </p>
-    <button onclick="game()">Jugar</button>
+    <div id="panel">
+        <div id="panel-container">
+            <div class="points">
+                <input type="text" placeholder="Player" id="user-name">
+                <div class="panel-point" id="player">0</div>
+            </div>
+            <div class="points">
+                <p id="name">Maquina</p>
+                <div class="panel-point" id="boot">0</div>
+            </div>
+        </div>
+    </div>
+    <div id="game">
+        <div id="result-container">
+            <img src="imagenes/icon.png" alt="Boot" class="img-result">
+            <h1>VS</h1>
+            <img src="imagenes/icon.png" alt="Player" class="img-result" id="cubo">
+        </div>
+        <div id="select-container">
+            <img src="./imagenes/piedra.png" alt="piedra" class="select-rps">
+            <img src="./imagenes/papel.png" alt="papel" class="select-rps">
+            <img src="./imagenes/tijeras.png" alt="tijeras" class="select-rps">
+        </div>
+    </div>
+    <script src="script.js" ></script>
 </body>
 </html>
