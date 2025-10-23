@@ -94,11 +94,15 @@ function game() {
 
 }
 
-function reset(){
-    if(playerScore == 3){
+function reset() {
+    if (playerScore == 3) {
         alert('HAS GANADO')
+        playerScore = 0;
+        bootScore = 0
     }
-    if(bootScore == 3){
+    if (bootScore == 3) {
         alert('HAS PERDIDO')
+        playerScore = 0;
+        bootScore = 0
     }
 }
