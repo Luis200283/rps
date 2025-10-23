@@ -99,17 +99,8 @@ body {
     background: linear-gradient(to right, #FF7E5F, #f37bfe);
     border-radius: 10px;
     box-shadow: 2px 2px 11px black;
-    padding: 10px;
-    margin-top: 10px;
 }
 
-.img-result2{
-    background: linear-gradient(to right, #FF7E5F, #f37bfe);
-    border-radius: 10px;
-    box-shadow: 2px 2px 11px black;
-    padding: 10px;
-    margin-top: 10px;
-}
 
 #select-container {
     display: flex;
@@ -130,18 +121,48 @@ body {
     padding: 5px;
 }
 
-#jugar{
-    background: linear-gradient(to right, #FF7E5F, #feb47b);
-    width: 200px;
-    height: 50px;
-    border: none;
-    border-radius: 10px;
-    transition: height 0.1s ease;
-    font-size: 25px;
-    font-weight: 700;
+.cube {
+    width: 140px;
+    height: 140px;
+    position: relative;
+    transform-style: preserve-3d;
 }
 
-#jugar:hover {
-    width: 210px;
-    height: 60px;
+.cube-animation{
+    animation: rotateCube 1s linear 2;
+}
+
+.face {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    background-size: cover;
+    background-color: black;
+    border-radius: 10px;
+}
+
+.face.front {
+    transform: rotateX(0deg) translateZ(70px);
+}
+
+.face.back {
+    transform: rotateX(180deg) translateZ(70px);
+}
+
+.face.left {
+    transform: rotateY(180deg) rotateX(90deg) translateZ(-70px);
+}
+
+.face.right {
+    transform: rotateX(-90deg) translateZ(-70px);
+}
+
+@keyframes rotateCube {
+    from {
+        transform: rotateX(0deg);
+    }
+
+    to {
+        transform: rotateX(360deg);
+    }
 }

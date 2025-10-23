@@ -3,6 +3,8 @@ const result = document.querySelectorAll('.img-result')
 const jugar = document.getElementById('jugar')
 const player = document.getElementById('player')
 const boot = document.getElementById('boot')
+const cube = document.querySelectorAll('.cube')
+const cubeResult = document.getElementById('cube-result')
 let playerScore = 0;
 let bootScore = 0;
 let ganador;
@@ -10,16 +12,18 @@ let human;
 
 select.addEventListener('click', (event) => {
     human = event.target.alt
-    
+
     if (human == 'piedra' || human == 'papel' || human == 'tijeras') {
         result[0].src = `./imagenes/${human}.png`
         result[0].style.background = "black"
-    }
 
-    game()
+        cube[0].classList.add("cube-animation")
+        cube[1].classList.add("cube-animation")
+        setTimeout(game, 1000)
+    }
 })
 
-function getComputerChoice(){
+function getComputerChoice() {
     let select = Math.floor(Math.random() * 3)
     if (select == 0) {
         return "piedra"
@@ -74,15 +78,27 @@ function enfrentamiento(computer, human) {
 function game() {
     let computer = String(getComputerChoice())
     let resultado = String(enfrentamiento(computer, human))
-    
+
     if (computer == 'piedra' || computer == 'papel' || computer == 'tijeras') {
-        result[1].src = `./imagenes/${computer}.png`
-        result[1].style.background = "black"
+        cubeResult.src = `./imagenes/${computer}.png`
+        cubeResult.style.background = "black"
     }
+
+    cube[0].classList.remove("cube-animation")
+    cube[1].classList.remove("cube-animation")
 
     player.textContent = playerScore;
     boot.textContent = bootScore
     ganador = resultado
+    setTimeout(reset, 500)
 
 }
 
+function reset(){
+    if(playerScore == 3){
+        alert('HAS GANADO')
+    }
+    if(bootScore == 3){
+        alert('HAS PERDIDO')
+    }
+}
